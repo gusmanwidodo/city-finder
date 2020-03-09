@@ -38,7 +38,7 @@ export const searchCities = {
       name: 'searchText',
       value: 'jakrta',
       required: true,
-      description: 'Free text to search'
-    }
-  ]
+      description: 'Free text to search',
+    },
+  ],
 };
