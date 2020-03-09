@@ -53,19 +53,7 @@ yarn start
 ├── data
 │   └── cities.json
 ├── dist
-│   ├── AppServer.js
-│   ├── controllers
-│   │   ├── HomeController.js
-│   │   ├── SearchController.js
-│   │   └── index.js
-│   ├── index.js
-│   ├── libs
-│   │   ├── elasticsearch.js
-│   │   └── swagger.js
-│   ├── openAPI
-│   │   └── cities.swagger.js
-│   └── types
-│       └── City.js
+│   ├── ...
 ├── nodemon.json
 ├── package.json
 ├── src
@@ -92,8 +80,7 @@ yarn start
 ```shell
 .
 ├── build
-│   ├── favicon.ico
-│   └── manifest.json
+│   ├── ...
 ├── package.json
 ├── public
 │   ├── favicon.ico
