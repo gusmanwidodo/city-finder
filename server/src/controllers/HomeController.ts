@@ -5,6 +5,6 @@ import { Controller, Get } from '@overnightjs/core';
 export class HomeController {
   @Get('/')
   private async index(req: Request, res: Response) {
-    res.status(200).json('ok');
+    res.status(200).json('restricted!');
   }
 }
