@@ -4,18 +4,34 @@ import { City } from 'src/types/City';
 
 const client = new Client({ node: 'http://localhost:9200' });
 
-export const searchCityByText = async (searchText: string) => {
-  const result = await client.search({
-    index: 'city-index',
-    body: { foo: 'bar' },
-  });
+export const searchCityByText = async (indexName: string, searchText: string) => {
 
-  return result;
+  // query and scoring here
+  const body = {
+    size: 200,
+    from: 0,
+    query: {
+      match: {
+        name: {
+          query : searchText,
+          fuzziness: 'AUTO'
+        }
+      }
+    },
+  };
+
+  const result = await client.search({ index: indexName, type: indexName, body });
+
+  return result.body.hits.hits.map((item: any) => item._source);
 };
 
-export const checkHealth = async (): Promise<boolean> => {
-  const result = await client.ping();
-  return result.statusCode === 200;
+export const checkHealth = async () => {
+  try {
+    const result = await client.ping();
+    return result.statusCode;
+  } catch {
+    return 500;
+  }
 };
 
 export const indexBulk = async (index: string, data: any) => {
