@@ -1,5 +1,7 @@
 import * as bodyParser from 'body-parser';
 import * as controllers from './controllers';
+import { swaggerDocument } from './libs/swagger';
+import swaggerUi = require('swagger-ui-express');
 
 import { Server } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';
@@ -11,6 +13,7 @@ class AppServer extends Server {
     super(true);
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     this.setupControllers();
   }
 

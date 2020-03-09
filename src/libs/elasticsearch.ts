@@ -5,7 +5,6 @@ import { City } from 'src/types/City';
 const client = new Client({ node: 'http://localhost:9200' });
 
 export const searchCityByText = async (indexName: string, searchText: string) => {
-
   // query and scoring here
   const body = {
     size: 200,
@@ -13,10 +12,10 @@ export const searchCityByText = async (indexName: string, searchText: string) =>
     query: {
       match: {
         name: {
-          query : searchText,
-          fuzziness: 'AUTO'
-        }
-      }
+          query: searchText,
+          fuzziness: 'AUTO',
+        },
+      },
     },
   };
 
@@ -27,7 +26,7 @@ export const searchCityByText = async (indexName: string, searchText: string) =>
 
 export const checkHealth = async () => {
   try {
-    const result = await client.ping();
+    const result = await client.ping({}, { requestTimeout: 20000 });
     return result.statusCode;
   } catch {
     return 500;

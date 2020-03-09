@@ -7,7 +7,7 @@ import { checkHealth, searchCityByText, createNewIndex } from '../libs/elasticse
 export class SearchController {
   @Get('cities')
   private async getCities(req: Request, res: Response) {
-    const searchText = req.query.searchText;
+    const searchText = req.query.searchText ?? '';
     const result = await searchCityByText('cities', searchText);
 
     res.status(200).json(result);
